@@ -1,0 +1,62 @@
+<sequence_node size='1'>
+  <function_definition_node name='factorial' qualifier='public' type='integer'>
+  <arguments>
+      <sequence_node size='1'>
+        <variable_declaration_node name='n' qualifier='private' type='integer'>
+        </variable_declaration_node>
+      </sequence_node>
+  </arguments>
+    <block_node>
+    <declarations>
+    </declarations>
+    <instructions>
+        <sequence_node size='1'>
+          <if_else_node>
+          <condition>
+              <gt_node>
+                <rvalue_node>
+                    <variable_node>n</variable_node>
+                </rvalue_node>
+                <integer_node>1</integer_node>
+              </gt_node>
+          </condition>
+          <then>
+              <return_node>
+                  <tuple_node>
+                    <sequence_node size='1'>
+                      <mul_node>
+                        <rvalue_node>
+                            <variable_node>n</variable_node>
+                        </rvalue_node>
+                        <function_call_node name='factorial'>
+                        <arguments>
+                            <sequence_node size='1'>
+                              <sub_node>
+                                <rvalue_node>
+                                    <variable_node>n</variable_node>
+                                </rvalue_node>
+                                <integer_node>1</integer_node>
+                              </sub_node>
+                            </sequence_node>
+                        </arguments>
+                        </function_call_node>
+                      </mul_node>
+                    </sequence_node>
+                  </tuple_node>
+              </return_node>
+          </then>
+          <else>
+              <return_node>
+                  <tuple_node>
+                    <sequence_node size='1'>
+                      <integer_node>1</integer_node>
+                    </sequence_node>
+                  </tuple_node>
+              </return_node>
+          </else>
+          </if_else_node>
+        </sequence_node>
+    </instructions>
+    </block_node>
+  </function_definition_node>
+</sequence_node>

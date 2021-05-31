@@ -1,0 +1,42 @@
+;;-- generation of the "_main" function
+TEXT
+ALIGN
+GLOBAL _main, FUNC
+LABEL _main
+ENTER 16   ; d@-8 and e@-16
+ 
+;;-- load literal onto stack
+DOUBLE 3.3e-2
+ 
+;;-- to perform the first assignment (to "e"), duplicate the value on the stack
+DUP64
+ 
+LOCAL -16  ; write value to "e"
+STDOUBLE
+ 
+;;-- to perform the second assignment (to "d"), duplicate the value on the stack
+DUP64
+ 
+LOCAL -8  ; write value to "d"
+STDOUBLE
+ 
+;;-- the assignments are an instruction: trash the value left on the stack
+TRASH 8
+ 
+;;-- now to perform the add operation
+LOCAL -8
+LDDOUBLE   ; load "d"
+LOCAL -16
+LDDOUBLE ; load "e"
+ 
+DADD   ; leaves result on the stack
+ 
+EXTERN printd
+CALL printd
+ 
+TRASH 8  ; argument value no longer needed
+ 
+INT 0
+STFVAL32
+LEAVE
+RET

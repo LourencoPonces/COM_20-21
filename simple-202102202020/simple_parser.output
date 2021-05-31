@@ -1,0 +1,1079 @@
+Grammar
+
+    0 $accept: program $end
+
+    1 program: tBEGIN list tEND
+
+    2 list: stmt
+    3     | list stmt
+
+    4 stmt: expr ';'
+    5     | tPRINT expr ';'
+    6     | tREAD lval ';'
+    7     | tWHILE '(' expr ')' stmt
+    8     | tIF '(' expr ')' stmt
+    9     | tIF '(' expr ')' stmt tELSE stmt
+   10     | '{' list '}'
+
+   11 expr: tINTEGER
+   12     | tSTRING
+   13     | '-' expr
+   14     | expr '+' expr
+   15     | expr '-' expr
+   16     | expr '*' expr
+   17     | expr '/' expr
+   18     | expr '%' expr
+   19     | expr '<' expr
+   20     | expr '>' expr
+   21     | expr tGE expr
+   22     | expr tLE expr
+   23     | expr tNE expr
+   24     | expr tEQ expr
+   25     | '(' expr ')'
+   26     | lval
+   27     | lval '=' expr
+
+   28 lval: tIDENTIFIER
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '%' (37) 18
+    '(' (40) 7 8 9 25
+    ')' (41) 7 8 9 25
+    '*' (42) 16
+    '+' (43) 14
+    '-' (45) 13 15
+    '/' (47) 17
+    ';' (59) 4 5 6
+    '<' (60) 19
+    '=' (61) 27
+    '>' (62) 20
+    '{' (123) 10
+    '}' (125) 10
+    error (256)
+    tINTEGER <i> (258) 11
+    tIDENTIFIER <s> (259) 28
+    tSTRING <s> (260) 12
+    tWHILE (261) 7
+    tIF (262) 8 9
+    tPRINT (263) 5
+    tREAD (264) 6
+    tBEGIN (265) 1
+    tEND (266) 1
+    tIFX (267)
+    tELSE (268) 9
+    tGE (269) 21
+    tLE (270) 22
+    tEQ (271) 24
+    tNE (272) 23
+    tUNARY (273)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (32)
+        on left: 0
+    program <node> (33)
+        on left: 1
+        on right: 0
+    list <sequence> (34)
+        on left: 2 3
+        on right: 1 3 10
+    stmt <node> (35)
+        on left: 4 5 6 7 8 9 10
+        on right: 2 3 7 8 9
+    expr <expression> (36)
+        on left: 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+        on right: 4 5 7 8 9 13 14 15 16 17 18 19 20 21 22 23 24 25 27
+    lval <lvalue> (37)
+        on left: 28
+        on right: 6 26 27
+
+
+State 0
+
+    0 $accept: • program $end
+
+    tBEGIN  shift, and go to state 1
+
+    program  go to state 2
+
+
+State 1
+
+    1 program: tBEGIN • list tEND
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    tWHILE       shift, and go to state 6
+    tIF          shift, and go to state 7
+    tPRINT       shift, and go to state 8
+    tREAD        shift, and go to state 9
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+    '{'          shift, and go to state 12
+
+    list  go to state 13
+    stmt  go to state 14
+    expr  go to state 15
+    lval  go to state 16
+
+
+State 2
+
+    0 $accept: program • $end
+
+    $end  shift, and go to state 17
+
+
+State 3
+
+   11 expr: tINTEGER •
+
+    $default  reduce using rule 11 (expr)
+
+
+State 4
+
+   28 lval: tIDENTIFIER •
+
+    $default  reduce using rule 28 (lval)
+
+
+State 5
+
+   12 expr: tSTRING •
+
+    $default  reduce using rule 12 (expr)
+
+
+State 6
+
+    7 stmt: tWHILE • '(' expr ')' stmt
+
+    '('  shift, and go to state 18
+
+
+State 7
+
+    8 stmt: tIF • '(' expr ')' stmt
+    9     | tIF • '(' expr ')' stmt tELSE stmt
+
+    '('  shift, and go to state 19
+
+
+State 8
+
+    5 stmt: tPRINT • expr ';'
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 20
+    lval  go to state 16
+
+
+State 9
+
+    6 stmt: tREAD • lval ';'
+
+    tIDENTIFIER  shift, and go to state 4
+
+    lval  go to state 21
+
+
+State 10
+
+   13 expr: '-' • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 22
+    lval  go to state 16
+
+
+State 11
+
+   25 expr: '(' • expr ')'
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 23
+    lval  go to state 16
+
+
+State 12
+
+   10 stmt: '{' • list '}'
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    tWHILE       shift, and go to state 6
+    tIF          shift, and go to state 7
+    tPRINT       shift, and go to state 8
+    tREAD        shift, and go to state 9
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+    '{'          shift, and go to state 12
+
+    list  go to state 24
+    stmt  go to state 14
+    expr  go to state 15
+    lval  go to state 16
+
+
+State 13
+
+    1 program: tBEGIN list • tEND
+    3 list: list • stmt
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    tWHILE       shift, and go to state 6
+    tIF          shift, and go to state 7
+    tPRINT       shift, and go to state 8
+    tREAD        shift, and go to state 9
+    tEND         shift, and go to state 25
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+    '{'          shift, and go to state 12
+
+    stmt  go to state 26
+    expr  go to state 15
+    lval  go to state 16
+
+
+State 14
+
+    2 list: stmt •
+
+    $default  reduce using rule 2 (list)
+
+
+State 15
+
+    4 stmt: expr • ';'
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    tGE  shift, and go to state 27
+    tLE  shift, and go to state 28
+    tEQ  shift, and go to state 29
+    tNE  shift, and go to state 30
+    '>'  shift, and go to state 31
+    '<'  shift, and go to state 32
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+    ';'  shift, and go to state 38
+
+
+State 16
+
+   26 expr: lval •
+   27     | lval • '=' expr
+
+    '='  shift, and go to state 39
+
+    $default  reduce using rule 26 (expr)
+
+
+State 17
+
+    0 $accept: program $end •
+
+    $default  accept
+
+
+State 18
+
+    7 stmt: tWHILE '(' • expr ')' stmt
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 40
+    lval  go to state 16
+
+
+State 19
+
+    8 stmt: tIF '(' • expr ')' stmt
+    9     | tIF '(' • expr ')' stmt tELSE stmt
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 41
+    lval  go to state 16
+
+
+State 20
+
+    5 stmt: tPRINT expr • ';'
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    tGE  shift, and go to state 27
+    tLE  shift, and go to state 28
+    tEQ  shift, and go to state 29
+    tNE  shift, and go to state 30
+    '>'  shift, and go to state 31
+    '<'  shift, and go to state 32
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+    ';'  shift, and go to state 42
+
+
+State 21
+
+    6 stmt: tREAD lval • ';'
+
+    ';'  shift, and go to state 43
+
+
+State 22
+
+   13 expr: '-' expr •
+   14     | expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    $default  reduce using rule 13 (expr)
+
+
+State 23
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+   25     | '(' expr • ')'
+
+    tGE  shift, and go to state 27
+    tLE  shift, and go to state 28
+    tEQ  shift, and go to state 29
+    tNE  shift, and go to state 30
+    '>'  shift, and go to state 31
+    '<'  shift, and go to state 32
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+    ')'  shift, and go to state 44
+
+
+State 24
+
+    3 list: list • stmt
+   10 stmt: '{' list • '}'
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    tWHILE       shift, and go to state 6
+    tIF          shift, and go to state 7
+    tPRINT       shift, and go to state 8
+    tREAD        shift, and go to state 9
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+    '{'          shift, and go to state 12
+    '}'          shift, and go to state 45
+
+    stmt  go to state 26
+    expr  go to state 15
+    lval  go to state 16
+
+
+State 25
+
+    1 program: tBEGIN list tEND •
+
+    $default  reduce using rule 1 (program)
+
+
+State 26
+
+    3 list: list stmt •
+
+    $default  reduce using rule 3 (list)
+
+
+State 27
+
+   21 expr: expr tGE • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 46
+    lval  go to state 16
+
+
+State 28
+
+   22 expr: expr tLE • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 47
+    lval  go to state 16
+
+
+State 29
+
+   24 expr: expr tEQ • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 48
+    lval  go to state 16
+
+
+State 30
+
+   23 expr: expr tNE • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 49
+    lval  go to state 16
+
+
+State 31
+
+   20 expr: expr '>' • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 50
+    lval  go to state 16
+
+
+State 32
+
+   19 expr: expr '<' • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 51
+    lval  go to state 16
+
+
+State 33
+
+   14 expr: expr '+' • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 52
+    lval  go to state 16
+
+
+State 34
+
+   15 expr: expr '-' • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 53
+    lval  go to state 16
+
+
+State 35
+
+   16 expr: expr '*' • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 54
+    lval  go to state 16
+
+
+State 36
+
+   17 expr: expr '/' • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 55
+    lval  go to state 16
+
+
+State 37
+
+   18 expr: expr '%' • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 56
+    lval  go to state 16
+
+
+State 38
+
+    4 stmt: expr ';' •
+
+    $default  reduce using rule 4 (stmt)
+
+
+State 39
+
+   27 expr: lval '=' • expr
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+
+    expr  go to state 57
+    lval  go to state 16
+
+
+State 40
+
+    7 stmt: tWHILE '(' expr • ')' stmt
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    tGE  shift, and go to state 27
+    tLE  shift, and go to state 28
+    tEQ  shift, and go to state 29
+    tNE  shift, and go to state 30
+    '>'  shift, and go to state 31
+    '<'  shift, and go to state 32
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+    ')'  shift, and go to state 58
+
+
+State 41
+
+    8 stmt: tIF '(' expr • ')' stmt
+    9     | tIF '(' expr • ')' stmt tELSE stmt
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    tGE  shift, and go to state 27
+    tLE  shift, and go to state 28
+    tEQ  shift, and go to state 29
+    tNE  shift, and go to state 30
+    '>'  shift, and go to state 31
+    '<'  shift, and go to state 32
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+    ')'  shift, and go to state 59
+
+
+State 42
+
+    5 stmt: tPRINT expr ';' •
+
+    $default  reduce using rule 5 (stmt)
+
+
+State 43
+
+    6 stmt: tREAD lval ';' •
+
+    $default  reduce using rule 6 (stmt)
+
+
+State 44
+
+   25 expr: '(' expr ')' •
+
+    $default  reduce using rule 25 (expr)
+
+
+State 45
+
+   10 stmt: '{' list '}' •
+
+    $default  reduce using rule 10 (stmt)
+
+
+State 46
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   21     | expr tGE expr •
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+
+    $default  reduce using rule 21 (expr)
+
+
+State 47
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   22     | expr tLE expr •
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+
+    $default  reduce using rule 22 (expr)
+
+
+State 48
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+   24     | expr tEQ expr •
+
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+
+    $default  reduce using rule 24 (expr)
+
+
+State 49
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   23     | expr tNE expr •
+   24     | expr • tEQ expr
+
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+
+    $default  reduce using rule 23 (expr)
+
+
+State 50
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   20     | expr '>' expr •
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+
+    $default  reduce using rule 20 (expr)
+
+
+State 51
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   19     | expr '<' expr •
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+
+    $default  reduce using rule 19 (expr)
+
+
+State 52
+
+   14 expr: expr • '+' expr
+   14     | expr '+' expr •
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+
+    $default  reduce using rule 14 (expr)
+
+
+State 53
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   15     | expr '-' expr •
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+
+    $default  reduce using rule 15 (expr)
+
+
+State 54
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   16     | expr '*' expr •
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    $default  reduce using rule 16 (expr)
+
+
+State 55
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   17     | expr '/' expr •
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    $default  reduce using rule 17 (expr)
+
+
+State 56
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   18     | expr '%' expr •
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+
+    $default  reduce using rule 18 (expr)
+
+
+State 57
+
+   14 expr: expr • '+' expr
+   15     | expr • '-' expr
+   16     | expr • '*' expr
+   17     | expr • '/' expr
+   18     | expr • '%' expr
+   19     | expr • '<' expr
+   20     | expr • '>' expr
+   21     | expr • tGE expr
+   22     | expr • tLE expr
+   23     | expr • tNE expr
+   24     | expr • tEQ expr
+   27     | lval '=' expr •
+
+    tGE  shift, and go to state 27
+    tLE  shift, and go to state 28
+    tEQ  shift, and go to state 29
+    tNE  shift, and go to state 30
+    '>'  shift, and go to state 31
+    '<'  shift, and go to state 32
+    '+'  shift, and go to state 33
+    '-'  shift, and go to state 34
+    '*'  shift, and go to state 35
+    '/'  shift, and go to state 36
+    '%'  shift, and go to state 37
+
+    $default  reduce using rule 27 (expr)
+
+
+State 58
+
+    7 stmt: tWHILE '(' expr ')' • stmt
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    tWHILE       shift, and go to state 6
+    tIF          shift, and go to state 7
+    tPRINT       shift, and go to state 8
+    tREAD        shift, and go to state 9
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+    '{'          shift, and go to state 12
+
+    stmt  go to state 60
+    expr  go to state 15
+    lval  go to state 16
+
+
+State 59
+
+    8 stmt: tIF '(' expr ')' • stmt
+    9     | tIF '(' expr ')' • stmt tELSE stmt
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    tWHILE       shift, and go to state 6
+    tIF          shift, and go to state 7
+    tPRINT       shift, and go to state 8
+    tREAD        shift, and go to state 9
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+    '{'          shift, and go to state 12
+
+    stmt  go to state 61
+    expr  go to state 15
+    lval  go to state 16
+
+
+State 60
+
+    7 stmt: tWHILE '(' expr ')' stmt •
+
+    $default  reduce using rule 7 (stmt)
+
+
+State 61
+
+    8 stmt: tIF '(' expr ')' stmt •
+    9     | tIF '(' expr ')' stmt • tELSE stmt
+
+    tELSE  shift, and go to state 62
+
+    $default  reduce using rule 8 (stmt)
+
+
+State 62
+
+    9 stmt: tIF '(' expr ')' stmt tELSE • stmt
+
+    tINTEGER     shift, and go to state 3
+    tIDENTIFIER  shift, and go to state 4
+    tSTRING      shift, and go to state 5
+    tWHILE       shift, and go to state 6
+    tIF          shift, and go to state 7
+    tPRINT       shift, and go to state 8
+    tREAD        shift, and go to state 9
+    '-'          shift, and go to state 10
+    '('          shift, and go to state 11
+    '{'          shift, and go to state 12
+
+    stmt  go to state 63
+    expr  go to state 15
+    lval  go to state 16
+
+
+State 63
+
+    9 stmt: tIF '(' expr ')' stmt tELSE stmt •
+
+    $default  reduce using rule 9 (stmt)

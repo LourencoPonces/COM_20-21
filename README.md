@@ -1,6 +1,6 @@
-Fir compiler (based on CDK).
+# Fir compiler (based on CDK)
 
-This was developed during the [Compilers Subject](https://fenix.tecnico.ulisboa.pt/disciplinas/Com564511132646/2020-2021/2-semestre) at Instituto Superior Técnico.
+This was developed during the [Compilers Subject](https://fenix.tecnico.ulisboa.pt/disciplinas/Com564511132646/2020-2021/2-semestre) at [Instituto Superior Técnico](https://tecnico.ulisboa.pt/en/).
 
 It was also developed by [Mariana Chinopa](https://github.com/Chinopa)
 

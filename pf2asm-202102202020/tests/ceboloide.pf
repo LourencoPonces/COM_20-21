@@ -1,0 +1,24 @@
+;;======================================================================
+;; Simple application (prints "cebolóide").
+;;======================================================================
+
+EXTERN prints
+TEXT
+ALIGN
+GLOBAL _main, FUNC
+LABEL _main
+ENTER 0
+RODATA
+LABEL batata
+SSTRING "cebolóide\n"
+TEXT
+ADDR batata
+CALL prints
+TRASH 4
+STFVAL32
+LEAVE
+RET
+
+;;======================================================================
+;;-----                         THE END                            -----
+;;======================================================================

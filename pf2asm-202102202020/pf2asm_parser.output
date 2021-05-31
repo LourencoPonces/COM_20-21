@@ -1,0 +1,2736 @@
+Terminals unused in grammar
+
+    T_AND
+    T_OR
+
+
+Grammar
+
+    0 $accept: file $end
+
+    1 file: %empty
+    2     | instructions
+
+    3 instructions: instruction
+    4             | instructions instruction
+
+    5 instruction: tNOP
+    6            | tINCR integer
+    7            | tDECR integer
+    8            | tALLOC
+    9            | tTRASH bytes
+   10            | tDUP32
+   11            | tDUP64
+   12            | tSWAP32
+   13            | tSWAP64
+   14            | tSP
+   15            | tI2D
+   16            | tF2D
+   17            | tD2I
+   18            | tD2F
+   19            | tNIL
+   20            | data
+   21            | function
+   22            | addressing
+   23            | loadstore
+   24            | bitwise
+   25            | arithmetic
+   26            | relational
+   27            | jumps
+
+   28 bytes: integer
+
+   29 data: tSINT integer
+   30     | tSSHORT integer
+   31     | tSSTRING T_LIT_STRING
+   32     | tSBYTE T_LIT_STRING
+   33     | tSADDR label
+   34     | tSALLOC integer
+   35     | tSFLOAT T_LIT_REAL
+   36     | tSDOUBLE T_LIT_REAL
+   37     | tINT integer
+   38     | tFLOAT T_LIT_REAL
+   39     | tDOUBLE T_LIT_REAL
+
+   40 addressing: tTEXT
+   41           | tRODATA
+   42           | tDATA
+   43           | tBSS
+   44           | tALIGN
+   45           | tLOCAL offset
+   46           | tLOCV offset
+   47           | tLOCA offset
+   48           | tGLOBAL label ',' type
+   49           | tEXTERN label
+   50           | tLABEL label
+   51           | tADDR label
+   52           | tADDRV label
+   53           | tADDRA label
+
+   54 offset: integer
+
+   55 label: T_ID
+
+   56 type: T_ID
+
+   57 function: tENTER bytes
+   58         | tSTART
+   59         | tLEAVE
+   60         | tCALL label
+   61         | tRET
+   62         | tRETN bytes
+   63         | tLDFVAL32
+   64         | tSTFVAL32
+   65         | tLDFVAL64
+   66         | tSTFVAL64
+
+   67 loadstore: tLDBYTE
+   68          | tSTBYTE
+   69          | tLDSHORT
+   70          | tSTSHORT
+   71          | tLDINT
+   72          | tSTINT
+   73          | tLDFLOAT
+   74          | tSTFLOAT
+   75          | tLDDOUBLE
+   76          | tSTDOUBLE
+
+   77 arithmetic: tADD
+   78           | tSUB
+   79           | tMUL
+   80           | tDIV
+   81           | tMOD
+   82           | tNEG
+   83           | tUDIV
+   84           | tUMOD
+   85           | tDADD
+   86           | tDSUB
+   87           | tDMUL
+   88           | tDDIV
+   89           | tDNEG
+
+   90 bitwise: tROTL
+   91        | tROTR
+   92        | tSHTL
+   93        | tSHTRU
+   94        | tSHTRS
+   95        | tAND
+   96        | tOR
+   97        | tXOR
+   98        | tNOT
+
+   99 relational: tGT
+  100           | tGE
+  101           | tLT
+  102           | tLE
+  103           | tEQ
+  104           | tNE
+  105           | tUGT
+  106           | tUGE
+  107           | tULT
+  108           | tULE
+  109           | tDCMP
+
+  110 jumps: tBRANCH
+  111      | tLEAP
+  112      | tJMP label
+  113      | tJZ label
+  114      | tJNZ label
+  115      | tJEQ label
+  116      | tJNE label
+  117      | tJGT label
+  118      | tJGE label
+  119      | tJLT label
+  120      | tJLE label
+  121      | tJUGT label
+  122      | tJUGE label
+  123      | tJULT label
+  124      | tJULE label
+
+  125 integer: T_LIT_INT
+  126        | integer '+' integer
+  127        | integer '-' integer
+  128        | integer '*' integer
+  129        | integer '/' integer
+  130        | integer '%' integer
+  131        | integer '<' integer
+  132        | integer T_LE integer
+  133        | integer T_EQ integer
+  134        | integer T_GE integer
+  135        | integer '>' integer
+  136        | integer T_NE integer
+  137        | '!' integer
+  138        | '-' integer
+  139        | '+' integer
+  140        | '(' integer ')'
+  141        | integer '?' integer ':' integer
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '!' (33) 137
+    '%' (37) 130
+    '(' (40) 140
+    ')' (41) 140
+    '*' (42) 128
+    '+' (43) 126 139
+    ',' (44) 48
+    '-' (45) 127 138
+    '/' (47) 129
+    ':' (58) 141
+    '<' (60) 131
+    '>' (62) 135
+    '?' (63) 141
+    error (256)
+    tBSS (258) 43
+    tDATA (259) 42
+    tRODATA (260) 41
+    tTEXT (261) 40
+    tSBYTE (262) 32
+    tSSHORT (263) 30
+    tSINT (264) 29
+    tSFLOAT (265) 35
+    tSDOUBLE (266) 36
+    tSSTRING (267) 31
+    tSALLOC (268) 34
+    tSADDR (269) 33
+    tALIGN (270) 44
+    tLABEL (271) 50
+    tEXTERN (272) 49
+    tGLOBAL (273) 48
+    tADDR (274) 51
+    tADDRA (275) 53
+    tADDRV (276) 52
+    tLOCAL (277) 45
+    tLOCA (278) 47
+    tLOCV (279) 46
+    tLDBYTE (280) 67
+    tLDSHORT (281) 69
+    tLDINT (282) 71
+    tLDFLOAT (283) 73
+    tLDDOUBLE (284) 75
+    tSTBYTE (285) 68
+    tSTSHORT (286) 70
+    tSTINT (287) 72
+    tSTFLOAT (288) 74
+    tSTDOUBLE (289) 76
+    tSP (290) 14
+    tALLOC (291) 8
+    tDUP32 (292) 10
+    tDUP64 (293) 11
+    tSWAP32 (294) 12
+    tSWAP64 (295) 13
+    tINT (296) 37
+    tFLOAT (297) 38
+    tDOUBLE (298) 39
+    tNEG (299) 82
+    tADD (300) 77
+    tSUB (301) 78
+    tMUL (302) 79
+    tDIV (303) 80
+    tUDIV (304) 83
+    tMOD (305) 81
+    tUMOD (306) 84
+    tDNEG (307) 89
+    tDADD (308) 85
+    tDSUB (309) 86
+    tDMUL (310) 87
+    tDDIV (311) 88
+    tINCR (312) 6
+    tDECR (313) 7
+    tD2F (314) 18
+    tF2D (315) 16
+    tD2I (316) 17
+    tI2D (317) 15
+    tEQ (318) 103
+    tNE (319) 104
+    tGT (320) 99
+    tGE (321) 100
+    tLE (322) 102
+    tLT (323) 101
+    tUGT (324) 105
+    tUGE (325) 106
+    tULE (326) 108
+    tULT (327) 107
+    tDCMP (328) 109
+    tNOT (329) 98
+    tAND (330) 95
+    tOR (331) 96
+    tXOR (332) 97
+    tROTL (333) 90
+    tROTR (334) 91
+    tSHTL (335) 92
+    tSHTRU (336) 93
+    tSHTRS (337) 94
+    tENTER (338) 57
+    tSTART (339) 58
+    tLEAVE (340) 59
+    tRET (341) 61
+    tRETN (342) 62
+    tCALL (343) 60
+    tTRASH (344) 9
+    tSTFVAL32 (345) 64
+    tSTFVAL64 (346) 66
+    tLDFVAL32 (347) 63
+    tLDFVAL64 (348) 65
+    tJMP (349) 112
+    tLEAP (350) 111
+    tBRANCH (351) 110
+    tJZ (352) 113
+    tJNZ (353) 114
+    tJEQ (354) 115
+    tJNE (355) 116
+    tJGT (356) 117
+    tJGE (357) 118
+    tJLE (358) 120
+    tJLT (359) 119
+    tJUGT (360) 121
+    tJUGE (361) 122
+    tJULE (362) 124
+    tJULT (363) 123
+    tNIL (364) 19
+    tNOP (365) 5
+    T_AND (366)
+    T_OR (367)
+    T_NE (368) 136
+    T_LE (369) 132
+    T_GE (370) 134
+    T_LIT_INT <i> (371) 125
+    T_LIT_REAL <d> (372) 35 36 38 39
+    T_LIT_STRING <s> (373) 31 32
+    T_ID <s> (374) 55 56
+    T_EQ (375) 133
+    T_UMINUS (376)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (135)
+        on left: 0
+    file <sequence> (136)
+        on left: 1 2
+        on right: 0
+    instructions <sequence> (137)
+        on left: 3 4
+        on right: 2 4
+    instruction <node> (138)
+        on left: 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+        on right: 3 4
+    bytes <i> (139)
+        on left: 28
+        on right: 9 57 62
+    data <node> (140)
+        on left: 29 30 31 32 33 34 35 36 37 38 39
+        on right: 20
+    addressing <node> (141)
+        on left: 40 41 42 43 44 45 46 47 48 49 50 51 52 53
+        on right: 22
+    offset <i> (142)
+        on left: 54
+        on right: 45 46 47
+    label <s> (143)
+        on left: 55
+        on right: 33 48 49 50 51 52 53 60 112 113 114 115 116 117 118 119 120 121 122 123 124
+    type <s> (144)
+        on left: 56
+        on right: 48
+    function <node> (145)
+        on left: 57 58 59 60 61 62 63 64 65 66
+        on right: 21
+    loadstore <node> (146)
+        on left: 67 68 69 70 71 72 73 74 75 76
+        on right: 23
+    arithmetic <node> (147)
+        on left: 77 78 79 80 81 82 83 84 85 86 87 88 89
+        on right: 25
+    bitwise <node> (148)
+        on left: 90 91 92 93 94 95 96 97 98
+        on right: 24
+    relational <node> (149)
+        on left: 99 100 101 102 103 104 105 106 107 108 109
+        on right: 26
+    jumps <node> (150)
+        on left: 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124
+        on right: 27
+    integer <i> (151)
+        on left: 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141
+        on right: 6 7 28 29 30 34 37 54 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141
+
+
+State 0
+
+    0 $accept: • file $end
+
+    tBSS       shift, and go to state 1
+    tDATA      shift, and go to state 2
+    tRODATA    shift, and go to state 3
+    tTEXT      shift, and go to state 4
+    tSBYTE     shift, and go to state 5
+    tSSHORT    shift, and go to state 6
+    tSINT      shift, and go to state 7
+    tSFLOAT    shift, and go to state 8
+    tSDOUBLE   shift, and go to state 9
+    tSSTRING   shift, and go to state 10
+    tSALLOC    shift, and go to state 11
+    tSADDR     shift, and go to state 12
+    tALIGN     shift, and go to state 13
+    tLABEL     shift, and go to state 14
+    tEXTERN    shift, and go to state 15
+    tGLOBAL    shift, and go to state 16
+    tADDR      shift, and go to state 17
+    tADDRA     shift, and go to state 18
+    tADDRV     shift, and go to state 19
+    tLOCAL     shift, and go to state 20
+    tLOCA      shift, and go to state 21
+    tLOCV      shift, and go to state 22
+    tLDBYTE    shift, and go to state 23
+    tLDSHORT   shift, and go to state 24
+    tLDINT     shift, and go to state 25
+    tLDFLOAT   shift, and go to state 26
+    tLDDOUBLE  shift, and go to state 27
+    tSTBYTE    shift, and go to state 28
+    tSTSHORT   shift, and go to state 29
+    tSTINT     shift, and go to state 30
+    tSTFLOAT   shift, and go to state 31
+    tSTDOUBLE  shift, and go to state 32
+    tSP        shift, and go to state 33
+    tALLOC     shift, and go to state 34
+    tDUP32     shift, and go to state 35
+    tDUP64     shift, and go to state 36
+    tSWAP32    shift, and go to state 37
+    tSWAP64    shift, and go to state 38
+    tINT       shift, and go to state 39
+    tFLOAT     shift, and go to state 40
+    tDOUBLE    shift, and go to state 41
+    tNEG       shift, and go to state 42
+    tADD       shift, and go to state 43
+    tSUB       shift, and go to state 44
+    tMUL       shift, and go to state 45
+    tDIV       shift, and go to state 46
+    tUDIV      shift, and go to state 47
+    tMOD       shift, and go to state 48
+    tUMOD      shift, and go to state 49
+    tDNEG      shift, and go to state 50
+    tDADD      shift, and go to state 51
+    tDSUB      shift, and go to state 52
+    tDMUL      shift, and go to state 53
+    tDDIV      shift, and go to state 54
+    tINCR      shift, and go to state 55
+    tDECR      shift, and go to state 56
+    tD2F       shift, and go to state 57
+    tF2D       shift, and go to state 58
+    tD2I       shift, and go to state 59
+    tI2D       shift, and go to state 60
+    tEQ        shift, and go to state 61
+    tNE        shift, and go to state 62
+    tGT        shift, and go to state 63
+    tGE        shift, and go to state 64
+    tLE        shift, and go to state 65
+    tLT        shift, and go to state 66
+    tUGT       shift, and go to state 67
+    tUGE       shift, and go to state 68
+    tULE       shift, and go to state 69
+    tULT       shift, and go to state 70
+    tDCMP      shift, and go to state 71
+    tNOT       shift, and go to state 72
+    tAND       shift, and go to state 73
+    tOR        shift, and go to state 74
+    tXOR       shift, and go to state 75
+    tROTL      shift, and go to state 76
+    tROTR      shift, and go to state 77
+    tSHTL      shift, and go to state 78
+    tSHTRU     shift, and go to state 79
+    tSHTRS     shift, and go to state 80
+    tENTER     shift, and go to state 81
+    tSTART     shift, and go to state 82
+    tLEAVE     shift, and go to state 83
+    tRET       shift, and go to state 84
+    tRETN      shift, and go to state 85
+    tCALL      shift, and go to state 86
+    tTRASH     shift, and go to state 87
+    tSTFVAL32  shift, and go to state 88
+    tSTFVAL64  shift, and go to state 89
+    tLDFVAL32  shift, and go to state 90
+    tLDFVAL64  shift, and go to state 91
+    tJMP       shift, and go to state 92
+    tLEAP      shift, and go to state 93
+    tBRANCH    shift, and go to state 94
+    tJZ        shift, and go to state 95
+    tJNZ       shift, and go to state 96
+    tJEQ       shift, and go to state 97
+    tJNE       shift, and go to state 98
+    tJGT       shift, and go to state 99
+    tJGE       shift, and go to state 100
+    tJLE       shift, and go to state 101
+    tJLT       shift, and go to state 102
+    tJUGT      shift, and go to state 103
+    tJUGE      shift, and go to state 104
+    tJULE      shift, and go to state 105
+    tJULT      shift, and go to state 106
+    tNIL       shift, and go to state 107
+    tNOP       shift, and go to state 108
+
+    $default  reduce using rule 1 (file)
+
+    file          go to state 109
+    instructions  go to state 110
+    instruction   go to state 111
+    data          go to state 112
+    addressing    go to state 113
+    function      go to state 114
+    loadstore     go to state 115
+    arithmetic    go to state 116
+    bitwise       go to state 117
+    relational    go to state 118
+    jumps         go to state 119
+
+
+State 1
+
+   43 addressing: tBSS •
+
+    $default  reduce using rule 43 (addressing)
+
+
+State 2
+
+   42 addressing: tDATA •
+
+    $default  reduce using rule 42 (addressing)
+
+
+State 3
+
+   41 addressing: tRODATA •
+
+    $default  reduce using rule 41 (addressing)
+
+
+State 4
+
+   40 addressing: tTEXT •
+
+    $default  reduce using rule 40 (addressing)
+
+
+State 5
+
+   32 data: tSBYTE • T_LIT_STRING
+
+    T_LIT_STRING  shift, and go to state 120
+
+
+State 6
+
+   30 data: tSSHORT • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 126
+
+
+State 7
+
+   29 data: tSINT • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 127
+
+
+State 8
+
+   35 data: tSFLOAT • T_LIT_REAL
+
+    T_LIT_REAL  shift, and go to state 128
+
+
+State 9
+
+   36 data: tSDOUBLE • T_LIT_REAL
+
+    T_LIT_REAL  shift, and go to state 129
+
+
+State 10
+
+   31 data: tSSTRING • T_LIT_STRING
+
+    T_LIT_STRING  shift, and go to state 130
+
+
+State 11
+
+   34 data: tSALLOC • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 131
+
+
+State 12
+
+   33 data: tSADDR • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 133
+
+
+State 13
+
+   44 addressing: tALIGN •
+
+    $default  reduce using rule 44 (addressing)
+
+
+State 14
+
+   50 addressing: tLABEL • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 134
+
+
+State 15
+
+   49 addressing: tEXTERN • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 135
+
+
+State 16
+
+   48 addressing: tGLOBAL • label ',' type
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 136
+
+
+State 17
+
+   51 addressing: tADDR • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 137
+
+
+State 18
+
+   53 addressing: tADDRA • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 138
+
+
+State 19
+
+   52 addressing: tADDRV • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 139
+
+
+State 20
+
+   45 addressing: tLOCAL • offset
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    offset   go to state 140
+    integer  go to state 141
+
+
+State 21
+
+   47 addressing: tLOCA • offset
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    offset   go to state 142
+    integer  go to state 141
+
+
+State 22
+
+   46 addressing: tLOCV • offset
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    offset   go to state 143
+    integer  go to state 141
+
+
+State 23
+
+   67 loadstore: tLDBYTE •
+
+    $default  reduce using rule 67 (loadstore)
+
+
+State 24
+
+   69 loadstore: tLDSHORT •
+
+    $default  reduce using rule 69 (loadstore)
+
+
+State 25
+
+   71 loadstore: tLDINT •
+
+    $default  reduce using rule 71 (loadstore)
+
+
+State 26
+
+   73 loadstore: tLDFLOAT •
+
+    $default  reduce using rule 73 (loadstore)
+
+
+State 27
+
+   75 loadstore: tLDDOUBLE •
+
+    $default  reduce using rule 75 (loadstore)
+
+
+State 28
+
+   68 loadstore: tSTBYTE •
+
+    $default  reduce using rule 68 (loadstore)
+
+
+State 29
+
+   70 loadstore: tSTSHORT •
+
+    $default  reduce using rule 70 (loadstore)
+
+
+State 30
+
+   72 loadstore: tSTINT •
+
+    $default  reduce using rule 72 (loadstore)
+
+
+State 31
+
+   74 loadstore: tSTFLOAT •
+
+    $default  reduce using rule 74 (loadstore)
+
+
+State 32
+
+   76 loadstore: tSTDOUBLE •
+
+    $default  reduce using rule 76 (loadstore)
+
+
+State 33
+
+   14 instruction: tSP •
+
+    $default  reduce using rule 14 (instruction)
+
+
+State 34
+
+    8 instruction: tALLOC •
+
+    $default  reduce using rule 8 (instruction)
+
+
+State 35
+
+   10 instruction: tDUP32 •
+
+    $default  reduce using rule 10 (instruction)
+
+
+State 36
+
+   11 instruction: tDUP64 •
+
+    $default  reduce using rule 11 (instruction)
+
+
+State 37
+
+   12 instruction: tSWAP32 •
+
+    $default  reduce using rule 12 (instruction)
+
+
+State 38
+
+   13 instruction: tSWAP64 •
+
+    $default  reduce using rule 13 (instruction)
+
+
+State 39
+
+   37 data: tINT • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 144
+
+
+State 40
+
+   38 data: tFLOAT • T_LIT_REAL
+
+    T_LIT_REAL  shift, and go to state 145
+
+
+State 41
+
+   39 data: tDOUBLE • T_LIT_REAL
+
+    T_LIT_REAL  shift, and go to state 146
+
+
+State 42
+
+   82 arithmetic: tNEG •
+
+    $default  reduce using rule 82 (arithmetic)
+
+
+State 43
+
+   77 arithmetic: tADD •
+
+    $default  reduce using rule 77 (arithmetic)
+
+
+State 44
+
+   78 arithmetic: tSUB •
+
+    $default  reduce using rule 78 (arithmetic)
+
+
+State 45
+
+   79 arithmetic: tMUL •
+
+    $default  reduce using rule 79 (arithmetic)
+
+
+State 46
+
+   80 arithmetic: tDIV •
+
+    $default  reduce using rule 80 (arithmetic)
+
+
+State 47
+
+   83 arithmetic: tUDIV •
+
+    $default  reduce using rule 83 (arithmetic)
+
+
+State 48
+
+   81 arithmetic: tMOD •
+
+    $default  reduce using rule 81 (arithmetic)
+
+
+State 49
+
+   84 arithmetic: tUMOD •
+
+    $default  reduce using rule 84 (arithmetic)
+
+
+State 50
+
+   89 arithmetic: tDNEG •
+
+    $default  reduce using rule 89 (arithmetic)
+
+
+State 51
+
+   85 arithmetic: tDADD •
+
+    $default  reduce using rule 85 (arithmetic)
+
+
+State 52
+
+   86 arithmetic: tDSUB •
+
+    $default  reduce using rule 86 (arithmetic)
+
+
+State 53
+
+   87 arithmetic: tDMUL •
+
+    $default  reduce using rule 87 (arithmetic)
+
+
+State 54
+
+   88 arithmetic: tDDIV •
+
+    $default  reduce using rule 88 (arithmetic)
+
+
+State 55
+
+    6 instruction: tINCR • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 147
+
+
+State 56
+
+    7 instruction: tDECR • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 148
+
+
+State 57
+
+   18 instruction: tD2F •
+
+    $default  reduce using rule 18 (instruction)
+
+
+State 58
+
+   16 instruction: tF2D •
+
+    $default  reduce using rule 16 (instruction)
+
+
+State 59
+
+   17 instruction: tD2I •
+
+    $default  reduce using rule 17 (instruction)
+
+
+State 60
+
+   15 instruction: tI2D •
+
+    $default  reduce using rule 15 (instruction)
+
+
+State 61
+
+  103 relational: tEQ •
+
+    $default  reduce using rule 103 (relational)
+
+
+State 62
+
+  104 relational: tNE •
+
+    $default  reduce using rule 104 (relational)
+
+
+State 63
+
+   99 relational: tGT •
+
+    $default  reduce using rule 99 (relational)
+
+
+State 64
+
+  100 relational: tGE •
+
+    $default  reduce using rule 100 (relational)
+
+
+State 65
+
+  102 relational: tLE •
+
+    $default  reduce using rule 102 (relational)
+
+
+State 66
+
+  101 relational: tLT •
+
+    $default  reduce using rule 101 (relational)
+
+
+State 67
+
+  105 relational: tUGT •
+
+    $default  reduce using rule 105 (relational)
+
+
+State 68
+
+  106 relational: tUGE •
+
+    $default  reduce using rule 106 (relational)
+
+
+State 69
+
+  108 relational: tULE •
+
+    $default  reduce using rule 108 (relational)
+
+
+State 70
+
+  107 relational: tULT •
+
+    $default  reduce using rule 107 (relational)
+
+
+State 71
+
+  109 relational: tDCMP •
+
+    $default  reduce using rule 109 (relational)
+
+
+State 72
+
+   98 bitwise: tNOT •
+
+    $default  reduce using rule 98 (bitwise)
+
+
+State 73
+
+   95 bitwise: tAND •
+
+    $default  reduce using rule 95 (bitwise)
+
+
+State 74
+
+   96 bitwise: tOR •
+
+    $default  reduce using rule 96 (bitwise)
+
+
+State 75
+
+   97 bitwise: tXOR •
+
+    $default  reduce using rule 97 (bitwise)
+
+
+State 76
+
+   90 bitwise: tROTL •
+
+    $default  reduce using rule 90 (bitwise)
+
+
+State 77
+
+   91 bitwise: tROTR •
+
+    $default  reduce using rule 91 (bitwise)
+
+
+State 78
+
+   92 bitwise: tSHTL •
+
+    $default  reduce using rule 92 (bitwise)
+
+
+State 79
+
+   93 bitwise: tSHTRU •
+
+    $default  reduce using rule 93 (bitwise)
+
+
+State 80
+
+   94 bitwise: tSHTRS •
+
+    $default  reduce using rule 94 (bitwise)
+
+
+State 81
+
+   57 function: tENTER • bytes
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    bytes    go to state 149
+    integer  go to state 150
+
+
+State 82
+
+   58 function: tSTART •
+
+    $default  reduce using rule 58 (function)
+
+
+State 83
+
+   59 function: tLEAVE •
+
+    $default  reduce using rule 59 (function)
+
+
+State 84
+
+   61 function: tRET •
+
+    $default  reduce using rule 61 (function)
+
+
+State 85
+
+   62 function: tRETN • bytes
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    bytes    go to state 151
+    integer  go to state 150
+
+
+State 86
+
+   60 function: tCALL • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 152
+
+
+State 87
+
+    9 instruction: tTRASH • bytes
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    bytes    go to state 153
+    integer  go to state 150
+
+
+State 88
+
+   64 function: tSTFVAL32 •
+
+    $default  reduce using rule 64 (function)
+
+
+State 89
+
+   66 function: tSTFVAL64 •
+
+    $default  reduce using rule 66 (function)
+
+
+State 90
+
+   63 function: tLDFVAL32 •
+
+    $default  reduce using rule 63 (function)
+
+
+State 91
+
+   65 function: tLDFVAL64 •
+
+    $default  reduce using rule 65 (function)
+
+
+State 92
+
+  112 jumps: tJMP • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 154
+
+
+State 93
+
+  111 jumps: tLEAP •
+
+    $default  reduce using rule 111 (jumps)
+
+
+State 94
+
+  110 jumps: tBRANCH •
+
+    $default  reduce using rule 110 (jumps)
+
+
+State 95
+
+  113 jumps: tJZ • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 155
+
+
+State 96
+
+  114 jumps: tJNZ • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 156
+
+
+State 97
+
+  115 jumps: tJEQ • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 157
+
+
+State 98
+
+  116 jumps: tJNE • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 158
+
+
+State 99
+
+  117 jumps: tJGT • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 159
+
+
+State 100
+
+  118 jumps: tJGE • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 160
+
+
+State 101
+
+  120 jumps: tJLE • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 161
+
+
+State 102
+
+  119 jumps: tJLT • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 162
+
+
+State 103
+
+  121 jumps: tJUGT • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 163
+
+
+State 104
+
+  122 jumps: tJUGE • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 164
+
+
+State 105
+
+  124 jumps: tJULE • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 165
+
+
+State 106
+
+  123 jumps: tJULT • label
+
+    T_ID  shift, and go to state 132
+
+    label  go to state 166
+
+
+State 107
+
+   19 instruction: tNIL •
+
+    $default  reduce using rule 19 (instruction)
+
+
+State 108
+
+    5 instruction: tNOP •
+
+    $default  reduce using rule 5 (instruction)
+
+
+State 109
+
+    0 $accept: file • $end
+
+    $end  shift, and go to state 167
+
+
+State 110
+
+    2 file: instructions •
+    4 instructions: instructions • instruction
+
+    tBSS       shift, and go to state 1
+    tDATA      shift, and go to state 2
+    tRODATA    shift, and go to state 3
+    tTEXT      shift, and go to state 4
+    tSBYTE     shift, and go to state 5
+    tSSHORT    shift, and go to state 6
+    tSINT      shift, and go to state 7
+    tSFLOAT    shift, and go to state 8
+    tSDOUBLE   shift, and go to state 9
+    tSSTRING   shift, and go to state 10
+    tSALLOC    shift, and go to state 11
+    tSADDR     shift, and go to state 12
+    tALIGN     shift, and go to state 13
+    tLABEL     shift, and go to state 14
+    tEXTERN    shift, and go to state 15
+    tGLOBAL    shift, and go to state 16
+    tADDR      shift, and go to state 17
+    tADDRA     shift, and go to state 18
+    tADDRV     shift, and go to state 19
+    tLOCAL     shift, and go to state 20
+    tLOCA      shift, and go to state 21
+    tLOCV      shift, and go to state 22
+    tLDBYTE    shift, and go to state 23
+    tLDSHORT   shift, and go to state 24
+    tLDINT     shift, and go to state 25
+    tLDFLOAT   shift, and go to state 26
+    tLDDOUBLE  shift, and go to state 27
+    tSTBYTE    shift, and go to state 28
+    tSTSHORT   shift, and go to state 29
+    tSTINT     shift, and go to state 30
+    tSTFLOAT   shift, and go to state 31
+    tSTDOUBLE  shift, and go to state 32
+    tSP        shift, and go to state 33
+    tALLOC     shift, and go to state 34
+    tDUP32     shift, and go to state 35
+    tDUP64     shift, and go to state 36
+    tSWAP32    shift, and go to state 37
+    tSWAP64    shift, and go to state 38
+    tINT       shift, and go to state 39
+    tFLOAT     shift, and go to state 40
+    tDOUBLE    shift, and go to state 41
+    tNEG       shift, and go to state 42
+    tADD       shift, and go to state 43
+    tSUB       shift, and go to state 44
+    tMUL       shift, and go to state 45
+    tDIV       shift, and go to state 46
+    tUDIV      shift, and go to state 47
+    tMOD       shift, and go to state 48
+    tUMOD      shift, and go to state 49
+    tDNEG      shift, and go to state 50
+    tDADD      shift, and go to state 51
+    tDSUB      shift, and go to state 52
+    tDMUL      shift, and go to state 53
+    tDDIV      shift, and go to state 54
+    tINCR      shift, and go to state 55
+    tDECR      shift, and go to state 56
+    tD2F       shift, and go to state 57
+    tF2D       shift, and go to state 58
+    tD2I       shift, and go to state 59
+    tI2D       shift, and go to state 60
+    tEQ        shift, and go to state 61
+    tNE        shift, and go to state 62
+    tGT        shift, and go to state 63
+    tGE        shift, and go to state 64
+    tLE        shift, and go to state 65
+    tLT        shift, and go to state 66
+    tUGT       shift, and go to state 67
+    tUGE       shift, and go to state 68
+    tULE       shift, and go to state 69
+    tULT       shift, and go to state 70
+    tDCMP      shift, and go to state 71
+    tNOT       shift, and go to state 72
+    tAND       shift, and go to state 73
+    tOR        shift, and go to state 74
+    tXOR       shift, and go to state 75
+    tROTL      shift, and go to state 76
+    tROTR      shift, and go to state 77
+    tSHTL      shift, and go to state 78
+    tSHTRU     shift, and go to state 79
+    tSHTRS     shift, and go to state 80
+    tENTER     shift, and go to state 81
+    tSTART     shift, and go to state 82
+    tLEAVE     shift, and go to state 83
+    tRET       shift, and go to state 84
+    tRETN      shift, and go to state 85
+    tCALL      shift, and go to state 86
+    tTRASH     shift, and go to state 87
+    tSTFVAL32  shift, and go to state 88
+    tSTFVAL64  shift, and go to state 89
+    tLDFVAL32  shift, and go to state 90
+    tLDFVAL64  shift, and go to state 91
+    tJMP       shift, and go to state 92
+    tLEAP      shift, and go to state 93
+    tBRANCH    shift, and go to state 94
+    tJZ        shift, and go to state 95
+    tJNZ       shift, and go to state 96
+    tJEQ       shift, and go to state 97
+    tJNE       shift, and go to state 98
+    tJGT       shift, and go to state 99
+    tJGE       shift, and go to state 100
+    tJLE       shift, and go to state 101
+    tJLT       shift, and go to state 102
+    tJUGT      shift, and go to state 103
+    tJUGE      shift, and go to state 104
+    tJULE      shift, and go to state 105
+    tJULT      shift, and go to state 106
+    tNIL       shift, and go to state 107
+    tNOP       shift, and go to state 108
+
+    $default  reduce using rule 2 (file)
+
+    instruction  go to state 168
+    data         go to state 112
+    addressing   go to state 113
+    function     go to state 114
+    loadstore    go to state 115
+    arithmetic   go to state 116
+    bitwise      go to state 117
+    relational   go to state 118
+    jumps        go to state 119
+
+
+State 111
+
+    3 instructions: instruction •
+
+    $default  reduce using rule 3 (instructions)
+
+
+State 112
+
+   20 instruction: data •
+
+    $default  reduce using rule 20 (instruction)
+
+
+State 113
+
+   22 instruction: addressing •
+
+    $default  reduce using rule 22 (instruction)
+
+
+State 114
+
+   21 instruction: function •
+
+    $default  reduce using rule 21 (instruction)
+
+
+State 115
+
+   23 instruction: loadstore •
+
+    $default  reduce using rule 23 (instruction)
+
+
+State 116
+
+   25 instruction: arithmetic •
+
+    $default  reduce using rule 25 (instruction)
+
+
+State 117
+
+   24 instruction: bitwise •
+
+    $default  reduce using rule 24 (instruction)
+
+
+State 118
+
+   26 instruction: relational •
+
+    $default  reduce using rule 26 (instruction)
+
+
+State 119
+
+   27 instruction: jumps •
+
+    $default  reduce using rule 27 (instruction)
+
+
+State 120
+
+   32 data: tSBYTE T_LIT_STRING •
+
+    $default  reduce using rule 32 (data)
+
+
+State 121
+
+  125 integer: T_LIT_INT •
+
+    $default  reduce using rule 125 (integer)
+
+
+State 122
+
+  139 integer: '+' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 169
+
+
+State 123
+
+  138 integer: '-' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 170
+
+
+State 124
+
+  137 integer: '!' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 171
+
+
+State 125
+
+  140 integer: '(' • integer ')'
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 172
+
+
+State 126
+
+   30 data: tSSHORT integer •
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '?'   shift, and go to state 176
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 30 (data)
+
+
+State 127
+
+   29 data: tSINT integer •
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '?'   shift, and go to state 176
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 29 (data)
+
+
+State 128
+
+   35 data: tSFLOAT T_LIT_REAL •
+
+    $default  reduce using rule 35 (data)
+
+
+State 129
+
+   36 data: tSDOUBLE T_LIT_REAL •
+
+    $default  reduce using rule 36 (data)
+
+
+State 130
+
+   31 data: tSSTRING T_LIT_STRING •
+
+    $default  reduce using rule 31 (data)
+
+
+State 131
+
+   34 data: tSALLOC integer •
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '?'   shift, and go to state 176
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 34 (data)
+
+
+State 132
+
+   55 label: T_ID •
+
+    $default  reduce using rule 55 (label)
+
+
+State 133
+
+   33 data: tSADDR label •
+
+    $default  reduce using rule 33 (data)
+
+
+State 134
+
+   50 addressing: tLABEL label •
+
+    $default  reduce using rule 50 (addressing)
+
+
+State 135
+
+   49 addressing: tEXTERN label •
+
+    $default  reduce using rule 49 (addressing)
+
+
+State 136
+
+   48 addressing: tGLOBAL label • ',' type
+
+    ','  shift, and go to state 185
+
+
+State 137
+
+   51 addressing: tADDR label •
+
+    $default  reduce using rule 51 (addressing)
+
+
+State 138
+
+   53 addressing: tADDRA label •
+
+    $default  reduce using rule 53 (addressing)
+
+
+State 139
+
+   52 addressing: tADDRV label •
+
+    $default  reduce using rule 52 (addressing)
+
+
+State 140
+
+   45 addressing: tLOCAL offset •
+
+    $default  reduce using rule 45 (addressing)
+
+
+State 141
+
+   54 offset: integer •
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '?'   shift, and go to state 176
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 54 (offset)
+
+
+State 142
+
+   47 addressing: tLOCA offset •
+
+    $default  reduce using rule 47 (addressing)
+
+
+State 143
+
+   46 addressing: tLOCV offset •
+
+    $default  reduce using rule 46 (addressing)
+
+
+State 144
+
+   37 data: tINT integer •
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '?'   shift, and go to state 176
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 37 (data)
+
+
+State 145
+
+   38 data: tFLOAT T_LIT_REAL •
+
+    $default  reduce using rule 38 (data)
+
+
+State 146
+
+   39 data: tDOUBLE T_LIT_REAL •
+
+    $default  reduce using rule 39 (data)
+
+
+State 147
+
+    6 instruction: tINCR integer •
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '?'   shift, and go to state 176
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 6 (instruction)
+
+
+State 148
+
+    7 instruction: tDECR integer •
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '?'   shift, and go to state 176
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 7 (instruction)
+
+
+State 149
+
+   57 function: tENTER bytes •
+
+    $default  reduce using rule 57 (function)
+
+
+State 150
+
+   28 bytes: integer •
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '?'   shift, and go to state 176
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 28 (bytes)
+
+
+State 151
+
+   62 function: tRETN bytes •
+
+    $default  reduce using rule 62 (function)
+
+
+State 152
+
+   60 function: tCALL label •
+
+    $default  reduce using rule 60 (function)
+
+
+State 153
+
+    9 instruction: tTRASH bytes •
+
+    $default  reduce using rule 9 (instruction)
+
+
+State 154
+
+  112 jumps: tJMP label •
+
+    $default  reduce using rule 112 (jumps)
+
+
+State 155
+
+  113 jumps: tJZ label •
+
+    $default  reduce using rule 113 (jumps)
+
+
+State 156
+
+  114 jumps: tJNZ label •
+
+    $default  reduce using rule 114 (jumps)
+
+
+State 157
+
+  115 jumps: tJEQ label •
+
+    $default  reduce using rule 115 (jumps)
+
+
+State 158
+
+  116 jumps: tJNE label •
+
+    $default  reduce using rule 116 (jumps)
+
+
+State 159
+
+  117 jumps: tJGT label •
+
+    $default  reduce using rule 117 (jumps)
+
+
+State 160
+
+  118 jumps: tJGE label •
+
+    $default  reduce using rule 118 (jumps)
+
+
+State 161
+
+  120 jumps: tJLE label •
+
+    $default  reduce using rule 120 (jumps)
+
+
+State 162
+
+  119 jumps: tJLT label •
+
+    $default  reduce using rule 119 (jumps)
+
+
+State 163
+
+  121 jumps: tJUGT label •
+
+    $default  reduce using rule 121 (jumps)
+
+
+State 164
+
+  122 jumps: tJUGE label •
+
+    $default  reduce using rule 122 (jumps)
+
+
+State 165
+
+  124 jumps: tJULE label •
+
+    $default  reduce using rule 124 (jumps)
+
+
+State 166
+
+  123 jumps: tJULT label •
+
+    $default  reduce using rule 123 (jumps)
+
+
+State 167
+
+    0 $accept: file $end •
+
+    $default  accept
+
+
+State 168
+
+    4 instructions: instructions instruction •
+
+    $default  reduce using rule 4 (instructions)
+
+
+State 169
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  139        | '+' integer •
+  141        | integer • '?' integer ':' integer
+
+    $default  reduce using rule 139 (integer)
+
+
+State 170
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  138        | '-' integer •
+  141        | integer • '?' integer ':' integer
+
+    $default  reduce using rule 138 (integer)
+
+
+State 171
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  137        | '!' integer •
+  141        | integer • '?' integer ':' integer
+
+    $default  reduce using rule 137 (integer)
+
+
+State 172
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  140        | '(' integer • ')'
+  141        | integer • '?' integer ':' integer
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '?'   shift, and go to state 176
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+    ')'   shift, and go to state 186
+
+
+State 173
+
+  136 integer: integer T_NE • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 187
+
+
+State 174
+
+  132 integer: integer T_LE • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 188
+
+
+State 175
+
+  134 integer: integer T_GE • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 189
+
+
+State 176
+
+  141 integer: integer '?' • integer ':' integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 190
+
+
+State 177
+
+  133 integer: integer T_EQ • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 191
+
+
+State 178
+
+  131 integer: integer '<' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 192
+
+
+State 179
+
+  135 integer: integer '>' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 193
+
+
+State 180
+
+  126 integer: integer '+' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 194
+
+
+State 181
+
+  127 integer: integer '-' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 195
+
+
+State 182
+
+  128 integer: integer '*' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 196
+
+
+State 183
+
+  129 integer: integer '/' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 197
+
+
+State 184
+
+  130 integer: integer '%' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 198
+
+
+State 185
+
+   48 addressing: tGLOBAL label ',' • type
+
+    T_ID  shift, and go to state 199
+
+    type  go to state 200
+
+
+State 186
+
+  140 integer: '(' integer ')' •
+
+    $default  reduce using rule 140 (integer)
+
+
+State 187
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  136        | integer T_NE integer •
+  141        | integer • '?' integer ':' integer
+
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 136 (integer)
+
+
+State 188
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  132        | integer T_LE integer •
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    '+'  shift, and go to state 180
+    '-'  shift, and go to state 181
+    '*'  shift, and go to state 182
+    '/'  shift, and go to state 183
+    '%'  shift, and go to state 184
+
+    $default  reduce using rule 132 (integer)
+
+
+State 189
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  134        | integer T_GE integer •
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    '+'  shift, and go to state 180
+    '-'  shift, and go to state 181
+    '*'  shift, and go to state 182
+    '/'  shift, and go to state 183
+    '%'  shift, and go to state 184
+
+    $default  reduce using rule 134 (integer)
+
+
+State 190
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+  141        | integer '?' integer • ':' integer
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '?'   shift, and go to state 176
+    ':'   shift, and go to state 201
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+
+State 191
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  133        | integer T_EQ integer •
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 133 (integer)
+
+
+State 192
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  131        | integer '<' integer •
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    '+'  shift, and go to state 180
+    '-'  shift, and go to state 181
+    '*'  shift, and go to state 182
+    '/'  shift, and go to state 183
+    '%'  shift, and go to state 184
+
+    $default  reduce using rule 131 (integer)
+
+
+State 193
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  135        | integer '>' integer •
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    '+'  shift, and go to state 180
+    '-'  shift, and go to state 181
+    '*'  shift, and go to state 182
+    '/'  shift, and go to state 183
+    '%'  shift, and go to state 184
+
+    $default  reduce using rule 135 (integer)
+
+
+State 194
+
+  126 integer: integer • '+' integer
+  126        | integer '+' integer •
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    '*'  shift, and go to state 182
+    '/'  shift, and go to state 183
+    '%'  shift, and go to state 184
+
+    $default  reduce using rule 126 (integer)
+
+
+State 195
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  127        | integer '-' integer •
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    '*'  shift, and go to state 182
+    '/'  shift, and go to state 183
+    '%'  shift, and go to state 184
+
+    $default  reduce using rule 127 (integer)
+
+
+State 196
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  128        | integer '*' integer •
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    $default  reduce using rule 128 (integer)
+
+
+State 197
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  129        | integer '/' integer •
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    $default  reduce using rule 129 (integer)
+
+
+State 198
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  130        | integer '%' integer •
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+
+    $default  reduce using rule 130 (integer)
+
+
+State 199
+
+   56 type: T_ID •
+
+    $default  reduce using rule 56 (type)
+
+
+State 200
+
+   48 addressing: tGLOBAL label ',' type •
+
+    $default  reduce using rule 48 (addressing)
+
+
+State 201
+
+  141 integer: integer '?' integer ':' • integer
+
+    T_LIT_INT  shift, and go to state 121
+    '+'        shift, and go to state 122
+    '-'        shift, and go to state 123
+    '!'        shift, and go to state 124
+    '('        shift, and go to state 125
+
+    integer  go to state 202
+
+
+State 202
+
+  126 integer: integer • '+' integer
+  127        | integer • '-' integer
+  128        | integer • '*' integer
+  129        | integer • '/' integer
+  130        | integer • '%' integer
+  131        | integer • '<' integer
+  132        | integer • T_LE integer
+  133        | integer • T_EQ integer
+  134        | integer • T_GE integer
+  135        | integer • '>' integer
+  136        | integer • T_NE integer
+  141        | integer • '?' integer ':' integer
+  141        | integer '?' integer ':' integer •
+
+    T_NE  shift, and go to state 173
+    T_LE  shift, and go to state 174
+    T_GE  shift, and go to state 175
+    T_EQ  shift, and go to state 177
+    '<'   shift, and go to state 178
+    '>'   shift, and go to state 179
+    '+'   shift, and go to state 180
+    '-'   shift, and go to state 181
+    '*'   shift, and go to state 182
+    '/'   shift, and go to state 183
+    '%'   shift, and go to state 184
+
+    $default  reduce using rule 141 (integer)

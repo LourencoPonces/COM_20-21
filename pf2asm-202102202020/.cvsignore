@@ -1,0 +1,9 @@
+Nx6Parser.tab.*
+Nx6Scanner.cpp
+Nx6Parser.output
+S9Parser.output
+s9
+*.tab.*
+PFScanner.cpp
+PFParser.output
+pf2asm
