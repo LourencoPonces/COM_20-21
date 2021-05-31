@@ -12,12 +12,12 @@ namespace fir {
   class xml_writer: public basic_ast_visitor {
     cdk::symbol_table<fir::symbol> &_symtab;
 
-  public:
-    xml_writer(std::shared_ptr<cdk::compiler> compiler, cdk::symbol_table<fir::symbol> &symtab) :
-        basic_ast_visitor(compiler), _symtab(symtab) {
-    }
+    bool _inFunctionArgs, _inFunctionBody;
 
   public:
+    xml_writer(std::shared_ptr<cdk::compiler> compiler, cdk::symbol_table<fir::symbol> &symtab) :
+        basic_ast_visitor(compiler), _symtab(symtab), _inFunctionArgs(false), _inFunctionBody(false) {
+    }
     ~xml_writer() {
       os().flush();
     }
@@ -34,6 +34,9 @@ namespace fir {
     }
     void closeTag(const cdk::basic_node *node, int lvl) {
       closeTag(node->label(), lvl);
+    }
+    void error(int lineno, std::string s) {
+      std::cerr << "error: " << lineno << ": " << s << std::endl;
     }
 
   protected:

@@ -5,7 +5,7 @@
 #include <cdk/ast/typed_node.h>
 #include <cdk/ast/sequence_node.h>
 #include "ast/body_node.h"
-#include <cdk/types/basic_type.h>
+#include <cdk/ast/expression_node.h>
 
 namespace fir {
 
@@ -29,7 +29,7 @@ namespace fir {
     int _qualifier;
     std::string _identifier;
     cdk::sequence_node *_arguments;
-    cdk::basic_type *_default_return_value;
+    cdk::expression_node *_default_return_value;
     fir::body_node *_body;
 
   public:
@@ -46,8 +46,8 @@ namespace fir {
     //!
     //! Constructor for a function definition with default return value.
     //!
-    function_definition_node(int lineno, int qualifier, std::shared_ptr<cdk::basic_type> funType, const std::string &identifier,
-                             cdk::sequence_node *arguments, cdk::basic_type *default_return_value, fir::body_node *body) :
+    function_definition_node(int lineno, std::shared_ptr<cdk::basic_type> funType, int qualifier, const std::string &identifier,
+                             cdk::sequence_node *arguments, cdk::expression_node *default_return_value, fir::body_node *body) :
         cdk::typed_node(lineno), _qualifier(qualifier), _identifier(identifier), _arguments(arguments), _default_return_value(default_return_value), _body(body) {
       type(funType);
     }
@@ -65,7 +65,7 @@ namespace fir {
     cdk::typed_node* argument(size_t ax) {
       return dynamic_cast<cdk::typed_node*>(_arguments->node(ax));
     }
-    cdk::basic_type* default_return_value() {
+    cdk::expression_node* default_return_value() {
       return _default_return_value;
     }
     fir::body_node* body() {

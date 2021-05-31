@@ -1,0 +1,290 @@
+<sequence_node size='2'>
+  <variable_definition_node identifier='f' qualifier='private' type='pointer to double'>
+  </variable_definition_node>
+  <function_definition_node name='fir' qualifier='public' type='integer'>
+    <args>
+      <sequence_node size='0'>
+      </sequence_node>
+    </args>
+    <default-return-value>
+      <integer_node>0</integer_node>
+    </default-return-value>
+      <body_node>
+        <block>
+          <declarations>
+            <sequence_node size='2'>
+              <variable_definition_node identifier='n' qualifier='private' type='integer'>
+              <initializer>
+                  <integer_node>4</integer_node>
+              </initializer>
+              </variable_definition_node>
+            </sequence_node>
+          </declarations>
+          <instructions>
+            <sequence_node size='5'>
+              <declarations>
+                <sequence_node size='1'>
+                  <variable_definition_node identifier='i' qualifier='private' type='integer'>
+                  <initializer>
+                      <integer_node>0</integer_node>
+                  </initializer>
+                  </variable_definition_node>
+                </sequence_node>
+              </declarations>
+              <instructions>
+                <sequence_node size='1'>
+                  <while_node>
+                    <condition>
+                      <lt_node>
+                        <rvalue_node>
+                            <variable_node>i</variable_node>
+                        </rvalue_node>
+                        <rvalue_node>
+                            <variable_node>n</variable_node>
+                        </rvalue_node>
+                      </lt_node>
+                    </condition>
+                    <doblock>
+                      <instructions>
+                        <sequence_node size='2'>
+                          <evaluation_node>
+                            <assignment_node>
+                            <index_node>
+                            <base>
+                              <rvalue_node>
+                                  <variable_node>f</variable_node>
+                              </rvalue_node>
+                            </base>
+                            <index>
+                              <rvalue_node>
+                                  <variable_node>i</variable_node>
+                              </rvalue_node>
+                            </index>
+                            </index_node>
+                                <integer_node>2</integer_node>
+                            </assignment_node>
+                          </evaluation_node>
+                          <evaluation_node>
+                            <assignment_node>
+                            <variable_node>i</variable_node>
+                                <add_node>
+                                  <rvalue_node>
+                                      <variable_node>i</variable_node>
+                                  </rvalue_node>
+                                  <integer_node>1</integer_node>
+                                </add_node>
+                            </assignment_node>
+                          </evaluation_node>
+                        </sequence_node>
+                      </instructions>
+                    </doblock>
+                  </while_node>
+                </sequence_node>
+              </instructions>
+              <declarations>
+                <sequence_node size='1'>
+                  <variable_definition_node identifier='j' qualifier='private' type='integer'>
+                  <initializer>
+                      <integer_node>0</integer_node>
+                  </initializer>
+                  </variable_definition_node>
+                </sequence_node>
+              </declarations>
+              <instructions>
+                <sequence_node size='1'>
+                  <while_node>
+                    <condition>
+                      <lt_node>
+                        <rvalue_node>
+                            <variable_node>j</variable_node>
+                        </rvalue_node>
+                        <rvalue_node>
+                            <variable_node>n</variable_node>
+                        </rvalue_node>
+                      </lt_node>
+                    </condition>
+                    <doblock>
+                      <instructions>
+                        <sequence_node size='2'>
+                          <write_node new-line='false'>
+                            <sequence_node size='1'>
+                              <rvalue_node>
+                                  <index_node>
+                                  <base>
+                                    <rvalue_node>
+                                        <variable_node>f</variable_node>
+                                    </rvalue_node>
+                                  </base>
+                                  <index>
+                                    <rvalue_node>
+                                        <variable_node>j</variable_node>
+                                    </rvalue_node>
+                                  </index>
+                                  </index_node>
+                              </rvalue_node>
+                            </sequence_node>
+                          </write_node>
+                          <evaluation_node>
+                            <assignment_node>
+                            <variable_node>j</variable_node>
+                                <add_node>
+                                  <rvalue_node>
+                                      <variable_node>j</variable_node>
+                                  </rvalue_node>
+                                  <integer_node>1</integer_node>
+                                </add_node>
+                            </assignment_node>
+                          </evaluation_node>
+                        </sequence_node>
+                      </instructions>
+                    </doblock>
+                  </while_node>
+                </sequence_node>
+              </instructions>
+              <write_node new-line='false'>
+                <sequence_node size='1'>
+                  <string_node>
+</string_node>
+                </sequence_node>
+              </write_node>
+              <declarations>
+                <sequence_node size='1'>
+                  <variable_definition_node identifier='k' qualifier='private' type='integer'>
+                  <initializer>
+                      <integer_node>0</integer_node>
+                  </initializer>
+                  </variable_definition_node>
+                </sequence_node>
+              </declarations>
+              <instructions>
+                <sequence_node size='1'>
+                  <while_node>
+                    <condition>
+                      <lt_node>
+                        <rvalue_node>
+                            <variable_node>k</variable_node>
+                        </rvalue_node>
+                        <rvalue_node>
+                            <variable_node>n</variable_node>
+                        </rvalue_node>
+                      </lt_node>
+                    </condition>
+                    <doblock>
+                      <instructions>
+                        <sequence_node size='2'>
+                          <evaluation_node>
+                            <assignment_node>
+                            <index_node>
+                            <base>
+                              <rvalue_node>
+                                  <variable_node>f</variable_node>
+                              </rvalue_node>
+                            </base>
+                            <index>
+                              <rvalue_node>
+                                  <variable_node>k</variable_node>
+                              </rvalue_node>
+                            </index>
+                            </index_node>
+                                <div_node>
+                                  <integer_node>6</integer_node>
+                                  <rvalue_node>
+                                      <index_node>
+                                      <base>
+                                        <rvalue_node>
+                                            <variable_node>f</variable_node>
+                                        </rvalue_node>
+                                      </base>
+                                      <index>
+                                        <rvalue_node>
+                                            <variable_node>k</variable_node>
+                                        </rvalue_node>
+                                      </index>
+                                      </index_node>
+                                  </rvalue_node>
+                                </div_node>
+                            </assignment_node>
+                          </evaluation_node>
+                          <evaluation_node>
+                            <assignment_node>
+                            <variable_node>k</variable_node>
+                                <add_node>
+                                  <rvalue_node>
+                                      <variable_node>k</variable_node>
+                                  </rvalue_node>
+                                  <integer_node>1</integer_node>
+                                </add_node>
+                            </assignment_node>
+                          </evaluation_node>
+                        </sequence_node>
+                      </instructions>
+                    </doblock>
+                  </while_node>
+                </sequence_node>
+              </instructions>
+              <declarations>
+                <sequence_node size='1'>
+                  <variable_definition_node identifier='l' qualifier='private' type='integer'>
+                  <initializer>
+                      <integer_node>0</integer_node>
+                  </initializer>
+                  </variable_definition_node>
+                </sequence_node>
+              </declarations>
+              <instructions>
+                <sequence_node size='1'>
+                  <while_node>
+                    <condition>
+                      <lt_node>
+                        <rvalue_node>
+                            <variable_node>l</variable_node>
+                        </rvalue_node>
+                        <rvalue_node>
+                            <variable_node>n</variable_node>
+                        </rvalue_node>
+                      </lt_node>
+                    </condition>
+                    <doblock>
+                      <instructions>
+                        <sequence_node size='2'>
+                          <write_node new-line='false'>
+                            <sequence_node size='1'>
+                              <rvalue_node>
+                                  <index_node>
+                                  <base>
+                                    <rvalue_node>
+                                        <variable_node>f</variable_node>
+                                    </rvalue_node>
+                                  </base>
+                                  <index>
+                                    <rvalue_node>
+                                        <variable_node>l</variable_node>
+                                    </rvalue_node>
+                                  </index>
+                                  </index_node>
+                              </rvalue_node>
+                            </sequence_node>
+                          </write_node>
+                          <evaluation_node>
+                            <assignment_node>
+                            <variable_node>l</variable_node>
+                                <add_node>
+                                  <rvalue_node>
+                                      <variable_node>l</variable_node>
+                                  </rvalue_node>
+                                  <integer_node>1</integer_node>
+                                </add_node>
+                            </assignment_node>
+                          </evaluation_node>
+                        </sequence_node>
+                      </instructions>
+                    </doblock>
+                  </while_node>
+                </sequence_node>
+              </instructions>
+            </sequence_node>
+          </instructions>
+        </block>
+      </body_node>
+  </function_definition_node>
+</sequence_node>

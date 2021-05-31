@@ -4,21 +4,21 @@
 #include <string>
 #include <cdk/ast/typed_node.h>
 #include <cdk/ast/sequence_node.h>
-#include <cdk/types/basic_type.h>
+#include <cdk/ast/expression_node.h>
 
 namespace fir {
 
   //!
   //! Class for describing function declarations.
   //! 
+  //! declaration: void qualifier id '(' args ')'
+  //!            { 
+  //!              new fir::function::Declaration(LINE, $2, $3, $5);
+  //!            }
+  //!
   //! declaration: type qualifier id '(' args ')'
   //!            { 
   //!              new fir::function::Declaration(LINE, $1, $2, $3, $5);
-  //!            }
-  //!
-  //! declaration: type qualifier id '(' args ')' -> default_return_value
-  //!            { 
-  //!              new fir::function::Declaration(LINE, $1, $2, $3, $5, $8);
   //!            }
   //!
   
@@ -29,11 +29,9 @@ namespace fir {
     int _qualifier;
     std::string _identifier;
     cdk::sequence_node *_arguments;
-    cdk::basic_type *_default_return_value;
 
   public:
     //!
-    //! Constructor for a function declaration without default return value.
     //! The function is automatically declared as a void function.
     //!
     function_declaration_node(int lineno, int qualifier, const std::string &identifier, cdk::sequence_node *arguments) :
@@ -42,11 +40,11 @@ namespace fir {
     }
 
     //!
-    //! Constructor for a function declaration with default return value.
+    //! Constructor for a function declaration with a type that it is not void.
     //!
-    function_declaration_node(int lineno, int qualifier, std::shared_ptr<cdk::basic_type> funType, const std::string &identifier,
-                              cdk::sequence_node *arguments, cdk::basic_type *default_return_value) :
-        cdk::typed_node(lineno), _qualifier(qualifier), _identifier(identifier), _arguments(arguments), _default_return_value(default_return_value) {
+    function_declaration_node(int lineno, std::shared_ptr<cdk::basic_type> funType, int qualifier,  const std::string &identifier,
+                              cdk::sequence_node *arguments) :
+        cdk::typed_node(lineno), _qualifier(qualifier), _identifier(identifier), _arguments(arguments) {
       type(funType);
     }
 
@@ -63,10 +61,7 @@ namespace fir {
     cdk::typed_node* argument(size_t ax) {
       return dynamic_cast<cdk::typed_node*>(_arguments->node(ax));
     }
-    cdk::basic_type* default_return_value() {
-      return _default_return_value;
-    }
-
+   
     void accept(basic_ast_visitor *sp, int level) {
       sp->do_function_declaration_node(this, level);
     }

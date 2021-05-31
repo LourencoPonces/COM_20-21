@@ -1,0 +1,68 @@
+<sequence_node size='2'>
+  <variable_definition_node identifier='x' qualifier='private' type='integer'>
+  </variable_definition_node>
+  <function_definition_node name='fir' qualifier='public' type='integer'>
+    <args>
+      <sequence_node size='0'>
+      </sequence_node>
+    </args>
+    <default-return-value>
+      <integer_node>0</integer_node>
+    </default-return-value>
+      <body_node>
+        <block>
+          <instructions>
+            <sequence_node size='3'>
+              <write_node new-line='true'>
+                <sequence_node size='1'>
+                  <integer_node>9</integer_node>
+                </sequence_node>
+              </write_node>
+              <evaluation_node>
+                <assignment_node>
+                <variable_node>x</variable_node>
+                    <integer_node>1</integer_node>
+                </assignment_node>
+              </evaluation_node>
+              <while_node>
+                <condition>
+                  <lt_node>
+                    <rvalue_node>
+                        <variable_node>x</variable_node>
+                    </rvalue_node>
+                    <neg_node>
+                      <integer_node>3</integer_node>
+                    </neg_node>
+                  </lt_node>
+                </condition>
+                <doblock>
+                  <instructions>
+                    <sequence_node size='2'>
+                      <write_node new-line='false'>
+                        <sequence_node size='1'>
+                          <rvalue_node>
+                              <variable_node>x</variable_node>
+                          </rvalue_node>
+                        </sequence_node>
+                      </write_node>
+                      <evaluation_node>
+                        <assignment_node>
+                        <variable_node>x</variable_node>
+                            <add_node>
+                              <rvalue_node>
+                                  <variable_node>x</variable_node>
+                              </rvalue_node>
+                              <integer_node>1</integer_node>
+                            </add_node>
+                        </assignment_node>
+                      </evaluation_node>
+                    </sequence_node>
+                  </instructions>
+                </doblock>
+              </while_node>
+            </sequence_node>
+          </instructions>
+        </block>
+      </body_node>
+  </function_definition_node>
+</sequence_node>

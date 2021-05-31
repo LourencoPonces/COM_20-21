@@ -1,0 +1,15 @@
+<sequence_node size='2'>
+  <variable_definition_node identifier='f' qualifier='private' type='pointer to double'>
+  </variable_definition_node>
+  <function_definition_node name='fir' qualifier='public' type='integer'>
+    <args>
+      <sequence_node size='0'>
+      </sequence_node>
+    </args>
+    <default-return-value>
+      <integer_node>0</integer_node>
+    </default-return-value>
+      <body_node>
+        <block>
+          <instructions>
+            <sequence_node size='4'>

@@ -1,0 +1,26 @@
+<sequence_node size='3'>
+  <variable_definition_node identifier='f' qualifier='private' type='pointer to double'>
+  </variable_definition_node>
+  <variable_definition_node identifier='d' qualifier='private' type='double'>
+  <initializer>
+      <integer_node>4</integer_node>
+  </initializer>
+  </variable_definition_node>
+  <function_definition_node name='fir' qualifier='public' type='integer'>
+    <args>
+      <sequence_node size='0'>
+      </sequence_node>
+    </args>
+    <default-return-value>
+      <integer_node>0</integer_node>
+    </default-return-value>
+      <body_node>
+        <block>
+          <declarations>
+            <sequence_node size='1'>
+              <variable_definition_node identifier='i' qualifier='private' type='integer'>
+              </variable_definition_node>
+            </sequence_node>
+          </declarations>
+          <instructions>
+            <sequence_node size='4'>

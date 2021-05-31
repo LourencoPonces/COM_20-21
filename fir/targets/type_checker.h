@@ -5,9 +5,6 @@
 
 namespace fir {
 
-  /**
-   * Print nodes as XML elements to the output stream.
-   */
   class type_checker: public basic_ast_visitor {
     cdk::symbol_table<fir::symbol> &_symtab;
 
@@ -24,8 +21,13 @@ namespace fir {
     }
 
   protected:
-    void processUnaryExpression(cdk::unary_operation_node *const node, int lvl);
-    void processBinaryExpression(cdk::binary_operation_node *const node, int lvl);
+    void processUnaryExpressionInt(cdk::unary_operation_node *const node, int lvl);
+    void processUnaryExpressionIntDouble(cdk::unary_operation_node *const node, int lvl);
+    void processBinaryExpressionInt(cdk::binary_operation_node *const node, int lvl);
+    void processBinaryExpressionIntDouble(cdk::binary_operation_node *const node, int lvl);
+    void processBinaryExpressionIntDoublePointer(cdk::binary_operation_node *const node, int lvl);
+
+
     template<typename T>
     void process_literal(cdk::literal_node<T> *const node, int lvl) {
     }
